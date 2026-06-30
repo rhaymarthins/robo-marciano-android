@@ -75,6 +75,14 @@ class MainActivity : AppCompatActivity() {
 
             // Limpa o campo para a proxima mensagem
             editMensagem.text.clear()
+
+            // Salva o comando no historico antes de abrir a resposta
+            HistoricoComandos.adicionar(mensagem)
+        }
+
+        val btnHistorico = findViewById<Button>(R.id.btnHistorico)
+        btnHistorico.setOnClickListener {
+            startActivity(Intent(this, HistoricoActivity::class.java))
         }
     }
 }
