@@ -2,6 +2,7 @@ package com.raymartins.robomarciano
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,12 +14,15 @@ class RespostaActivity : AppCompatActivity() {
 
         val textResposta = findViewById<TextView>(R.id.textResposta)
         val btnVoltar = findViewById<Button>(R.id.btnVoltar)
+        val imageFundo = findViewById<ImageView>(R.id.imageFundo)
 
-        // Recebe a resposta enviada pela MainActivity
+        // Recebe a resposta e a imagem enviadas pela MainActivity
         val resposta = intent.getStringExtra("resposta") ?: "Nao entendi"
-        textResposta.text = resposta
+        val imagemId = intent.getIntExtra("imagemFundo", R.drawable.bg_outro)
 
-        // Fecha esta tela e volta para a anterior
+        textResposta.text = resposta
+        imageFundo.setImageResource(imagemId)
+
         btnVoltar.setOnClickListener {
             finish()
         }
