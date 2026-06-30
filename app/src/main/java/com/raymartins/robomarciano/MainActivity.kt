@@ -55,9 +55,22 @@ class MainActivity : AppCompatActivity() {
                 marciano.responda(mensagem)
             }
 
-            // Abre a tela de resposta passando o texto do robo
+            // Escolhe a imagem de fundo baseada na resposta do robo
+            val imagemFundo = when {
+                resposta.startsWith("Certamente") -> R.drawable.bg_pergunta
+                resposta.startsWith("Opa") -> R.drawable.bg_grito
+                resposta.startsWith("Relaxa") -> R.drawable.bg_grito_pergunta
+                resposta.startsWith("A responsabilidade") -> R.drawable.bg_eu
+                resposta.startsWith("Nao me incomode") -> R.drawable.bg_vazio
+                resposta.startsWith("Essa eu sei") -> R.drawable.bg_matematica
+                resposta.startsWith("E pra ja") -> R.drawable.agir
+                else -> R.drawable.bg_outro
+            }
+
+            // Abre a tela de resposta passando o texto e a imagem
             val intent = Intent(this, RespostaActivity::class.java)
             intent.putExtra("resposta", resposta)
+            intent.putExtra("imagemFundo", imagemFundo)
             startActivity(intent)
 
             // Limpa o campo para a proxima mensagem
